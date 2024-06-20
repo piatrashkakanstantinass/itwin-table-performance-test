@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 import "./App.css";
 import {
@@ -6,6 +6,7 @@ import {
   Anchor,
   Table,
   ThemeProvider,
+  Button,
 } from "@itwin/itwinui-react";
 import { CellProps } from "@itwin/itwinui-react/react-table";
 import React from "react";
@@ -69,20 +70,27 @@ export const LazyLoading = () => {
     }, 1000);
   }, [data]);
 
+  const [virtualized, setVirtualized] = useState(false);
+
   return (
-    <Table
-      // enableVirtualization // seems to work even worse with virtualization enabled
-      columns={columns}
-      emptyTableContent="No data."
-      onBottomReached={onBottomReached}
-      isLoading={isLoading}
-      isSortable
-      style={{ height: 440, maxHeight: "90vh" }}
-      data={data}
-      // Prevents from resetting filters and sorting when more data is loaded
-      autoResetFilters={false}
-      autoResetSortBy={false}
-    />
+    <>
+      <Button onClick={() => setVirtualized((v) => !v)}>
+        {virtualized ? "Disable" : "Enable"} virtualization
+      </Button>
+      <Table
+        enableVirtualization={virtualized}
+        columns={columns}
+        emptyTableContent="No data."
+        onBottomReached={onBottomReached}
+        isLoading={isLoading}
+        isSortable
+        style={{ height: 440, maxHeight: "90vh" }}
+        data={data}
+        // Prevents from resetting filters and sorting when more data is loaded
+        autoResetFilters={false}
+        autoResetSortBy={false}
+      />
+    </>
   );
 };
 
