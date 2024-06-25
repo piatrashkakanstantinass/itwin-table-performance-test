@@ -83,12 +83,12 @@ export const LazyLoading = () => {
       .map((_, index) => ({
         name: `Name${start + index}`,
         description: `Description${start + index}`,
-        test1: "test",
-        test2: "test",
-        test3: "test",
-        test4: "test",
-        test5: "test",
-        test6: "test",
+        test1: `test${index}`,
+        test2: `test${index}`,
+        test3: `test${index}`,
+        test4: `test${index}`,
+        test5: `test${index}`,
+        test6: `test${index}`,
       }));
   };
 
