@@ -6,6 +6,7 @@ import {
   Anchor,
   Table,
   ThemeProvider,
+  Button,
 } from "@itwin/itwinui-react";
 import { CellProps } from "@itwin/itwinui-react/react-table";
 import React from "react";
@@ -105,7 +106,7 @@ export const LazyLoading = () => {
     }, 1000);
   }, [data]);
 
-  const [virtualized] = useState(true);
+  const [virtualized, setVirtualized] = useState(true);
 
   // useEffect(() => {
   //   if (virtualized) return;
@@ -116,9 +117,9 @@ export const LazyLoading = () => {
 
   return (
     <>
-      {/* <Button onClick={() => setVirtualized((v) => !v)}>
+      <Button onClick={() => setVirtualized((v) => !v)}>
         {virtualized ? "Disable" : "Enable"} virtualization
-      </Button> */}
+      </Button>
       <Table
         enableVirtualization={virtualized}
         columns={columns}
