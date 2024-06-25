@@ -6,7 +6,6 @@ import {
   Anchor,
   Table,
   ThemeProvider,
-  Button,
 } from "@itwin/itwinui-react";
 import { CellProps } from "@itwin/itwinui-react/react-table";
 import React from "react";
@@ -43,6 +42,36 @@ export const LazyLoading = () => {
           );
         },
       },
+      {
+        id: "test1",
+        Header: "test1",
+        accessor: "test1",
+      },
+      {
+        id: "test2",
+        Header: "test2",
+        accessor: "test2",
+      },
+      {
+        id: "test3",
+        Header: "test3",
+        accessor: "test3",
+      },
+      {
+        id: "test4",
+        Header: "test4",
+        accessor: "test4",
+      },
+      {
+        id: "test5",
+        Header: "test5",
+        accessor: "test5",
+      },
+      {
+        id: "test6",
+        Header: "test6",
+        accessor: "test6",
+      },
     ],
     []
   );
@@ -53,6 +82,12 @@ export const LazyLoading = () => {
       .map((_, index) => ({
         name: `Name${start + index}`,
         description: `Description${start + index}`,
+        test1: "test",
+        test2: "test",
+        test3: "test",
+        test4: "test",
+        test5: "test",
+        test6: "test",
       }));
   };
 
@@ -70,13 +105,20 @@ export const LazyLoading = () => {
     }, 1000);
   }, [data]);
 
-  const [virtualized, setVirtualized] = useState(false);
+  const [virtualized] = useState(true);
+
+  // useEffect(() => {
+  //   if (virtualized) return;
+  //   const callback = () => setVirtualized(true);
+  //   const timeoutId = setTimeout(callback, 1000);
+  //   return () => clearTimeout(timeoutId);
+  // }, [virtualized]);
 
   return (
     <>
-      <Button onClick={() => setVirtualized((v) => !v)}>
+      {/* <Button onClick={() => setVirtualized((v) => !v)}>
         {virtualized ? "Disable" : "Enable"} virtualization
-      </Button>
+      </Button> */}
       <Table
         enableVirtualization={virtualized}
         columns={columns}
